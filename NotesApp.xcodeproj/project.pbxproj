@@ -10,6 +10,7 @@
 		810997072708DF9900D35A64 /* ListNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810997062708DF9900D35A64 /* ListNotesViewController.swift */; };
 		810997092708DFB400D35A64 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810997082708DFB400D35A64 /* NoteViewController.swift */; };
 		8197EA07270923A300A5EC2F /* Extension + UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8197EA06270923A300A5EC2F /* Extension + UITextView.swift */; };
+		81B35CB42709F20400C32270 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B35CB32709F20400C32270 /* NoteTableViewCell.swift */; };
 		81F92B9A2708DCB400A2D8E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F92B992708DCB400A2D8E5 /* AppDelegate.swift */; };
 		81F92B9C2708DCB400A2D8E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F92B9B2708DCB400A2D8E5 /* SceneDelegate.swift */; };
 		81F92BA12708DCB400A2D8E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81F92B9F2708DCB400A2D8E5 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		810997062708DF9900D35A64 /* ListNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotesViewController.swift; sourceTree = "<group>"; };
 		810997082708DFB400D35A64 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		8197EA06270923A300A5EC2F /* Extension + UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITextView.swift"; sourceTree = "<group>"; };
+		81B35CB32709F20400C32270 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		81F92B962708DCB400A2D8E5 /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F92B992708DCB400A2D8E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81F92B9B2708DCB400A2D8E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				810997062708DF9900D35A64 /* ListNotesViewController.swift */,
 				810997082708DFB400D35A64 /* NoteViewController.swift */,
+				81B35CB32709F20400C32270 /* NoteTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				81F92B9A2708DCB400A2D8E5 /* AppDelegate.swift in Sources */,
 				81F92B9C2708DCB400A2D8E5 /* SceneDelegate.swift in Sources */,
 				810997092708DFB400D35A64 /* NoteViewController.swift in Sources */,
+				81B35CB42709F20400C32270 /* NoteTableViewCell.swift in Sources */,
 				81F92BA42708DCB400A2D8E5 /* NotesApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +353,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -377,6 +382,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

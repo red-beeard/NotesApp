@@ -117,19 +117,17 @@ extension ListNotesViewController {
 }
 
 // MARK: - Table view data source
-extension ListNotesViewController: UITableViewDataSource {
+extension ListNotesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         notes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "note", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "note", for: indexPath) as! NoteTableViewCell
         let note = notes[indexPath.row]
         
-        var content = cell.defaultContentConfiguration()
-        content.text = note.title
-        content.secondaryText = note.mainText
-        cell.contentConfiguration = content
+        cell.titleLabel.text = note.title
+        cell.descriptionLabel.text = note.mainText
         
         return cell
     }
