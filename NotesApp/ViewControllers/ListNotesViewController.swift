@@ -6,23 +6,38 @@
 //
 
 import UIKit
+import CoreData
 
 class ListNotesViewController: UIViewController {
     
-    private var notes: [Note] = CoreDataManager.shared.loadNotes()
+    // Если всплывает ошибка с типом, то нужно удалить DerivedData
+    // в /Users/red_beard/Library/Developer/Xcode и перезапустить Xcode
+    private var notes: [Note] = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noNotesLabel: UILabel!
     
+    //MARK: - Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        deleteAllNotes()
         
         let defaults = UserDefaults()
         if !defaults.bool(forKey: "wasFirstLaunch") {
             defaults.set(true, forKey: "wasFirstLaunch")
-            firstRun()
+            saveNote(title: "First note", mainText: "Text of first note")
         }
-        
+    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadNotes()
+        needChangeVisibility()
+    }
+    
+    private func needChangeVisibility() {
         if notes.count == 0 {
             tableView.isHidden = true
             noNotesLabel.isHidden = false
@@ -31,22 +46,73 @@ class ListNotesViewController: UIViewController {
             noNotesLabel.isHidden = true
         }
     }
+}
     
-    func firstRun() {
-        let note = Note(
-            id: UUID.init(),
-            title: "First note",
-            mainText: "Text of first note",
-            edited: Date.now
-        )
-
-        do {
-            try CoreDataManager.shared.saveNote(savedNote: note)
-        } catch {
-            debugPrint(error)
-        }
-        notes.append(note)
+//MARK: - Work with CoreData
+extension ListNotesViewController {
+    
+    private func getContext() -> NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+    }
+    
+    private func saveNote(title: String, mainText: String) {
+        let context = getContext()
+        guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else { return }
         
+        let note = Note(entity: entity, insertInto: context)
+        note.id = UUID()
+        note.edited = Date.now
+        note.title = title
+        note.mainText = mainText
+        
+        do {
+            try context.save()
+            notes.insert(note, at: 0)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func loadNotes() {
+        let context = getContext()
+        let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "edited", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        do {
+            notes = try context.fetch(fetchRequest)
+            tableView.reloadData()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func deleteNote(note: Note) {
+        let context = getContext()
+        context.delete(note)
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func deleteAllNotes() {
+        let context = getContext()
+        let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+        if let notes = try? context.fetch(fetchRequest) {
+            for note in notes {
+                context.delete(note)
+            }
+        }
+        
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -66,6 +132,19 @@ extension ListNotesViewController: UITableViewDataSource {
         cell.contentConfiguration = content
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            let note = notes.remove(at: indexPath.row)
+            deleteNote(note: note)
+            needChangeVisibility()
+            tableView.reloadData()
+        }
     }
 }
 

@@ -99,23 +99,22 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hbF-Ra-cJC">
                                 <rect key="frame" x="20" y="88" width="374" height="728"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Title" translatesAutoresizingMaskIntoConstraints="NO" id="b8r-Pe-PTQ">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aRE-gc-tCT">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="yGz-np-o4X"/>
+                                            <constraint firstAttribute="height" constant="40" id="bXw-bi-WFK"/>
                                         </constraints>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                         <connections>
-                                            <outlet property="delegate" destination="NaH-jp-O71" id="Z8B-rg-vE4"/>
+                                            <action selector="titleTextFieldChanging:" destination="NaH-jp-O71" eventType="editingChanged" id="Jks-UJ-tld"/>
+                                            <outlet property="delegate" destination="NaH-jp-O71" id="3cJ-cS-hw0"/>
                                         </connections>
-                                    </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ae1-Yd-7re">
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ae1-Yd-7re">
                                         <rect key="frame" x="0.0" y="40" width="374" height="688"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <connections>
@@ -137,7 +136,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8Hx-fn-2ek"/>
                     <connections>
                         <outlet property="mainTextView" destination="ae1-Yd-7re" id="pQR-a5-IEs"/>
-                        <outlet property="titleTextView" destination="b8r-Pe-PTQ" id="wMn-jP-Qny"/>
+                        <outlet property="titleTextField" destination="aRE-gc-tCT" id="8G3-hw-geW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNX-0p-MUd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
